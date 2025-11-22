@@ -1,6 +1,7 @@
 package com.exmaple.dao;
 
 import com.exmaple.bean.BoardVO;
+import com.exmaple.common.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,8 +21,18 @@ public class BoardDAO {
 
 
 
-    public int insert(BoardVO vo){
+    public int insertBoard(BoardVO vo) {
+        try {
+            conn = JDBCUtil.getConnection();
+            stmt = conn.prepareStatement(BOARD_INSERT);
+            stmt.setString(1, vo.getTitle());
+            stmt.setString(2, vo.getWriter());
+            stmt.setString(3, vo.getContent());
+            stmt.executeUpdate();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
-
 }
