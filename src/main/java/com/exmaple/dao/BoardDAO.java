@@ -60,4 +60,17 @@ public class BoardDAO {
         return list;
     }
 
+    public int deleteBoard(int id){
+        try {
+            conn = JDBCUtil.getConnection();
+            stmt = conn.prepareStatement(BOARD_DELETE);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

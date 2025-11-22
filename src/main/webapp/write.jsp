@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% request.setCharacterEncoding("utf-8"); %>
+
 <html>
 <head>
     <title>Title</title>
@@ -11,7 +13,7 @@
     <tr><td>Writer:</td><td><input type="text" name="writer"/></td></tr>
     <tr><td>Content:</td><td><textarea cols="50" rows="5" name="content"></textarea></td></tr>
     <tr>
-      <td><a href="list.jsp">View All</a></td>
+      <td><a href="list.jsp">목록 보기</a></td>
       <td><input type="submit" value="Add Post"/></td>
     </tr>
   </table>

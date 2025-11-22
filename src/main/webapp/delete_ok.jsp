@@ -3,13 +3,12 @@
 
 <% request.setCharacterEncoding("utf-8"); %>
 
-<jsp:useBean id="u" class="com.exmaple.bean.BoardVO" />
-<jsp:setProperty property="*" name="u"/>
-
 <%
+    int id = Integer.parseInt(request.getParameter("id"));
+
     BoardDAO dao = new BoardDAO();
-    int result = dao.insertBoard(u);
-    String msg = (result == 1 ? "데이터 추가 성공" : "[에러] 데이터 추가 실패");
+    int result = dao.deleteBoard(id);
+    String msg = (result == 1 ? "데이터 삭제 성공" : "[에러] 데이터 삭제 실패");
 %>
 
 <script>
