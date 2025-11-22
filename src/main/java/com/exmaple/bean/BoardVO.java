@@ -4,6 +4,8 @@ public class BoardVO {
     private int id;
     private String title;
     private String writer;
+    private boolean anonymous;
+    private int like;
     private String content;
     private String regdate;
     private int cnt;
@@ -30,6 +32,22 @@ public class BoardVO {
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public boolean isAnonymous() {
+        return anonymous;
+    }
+
+    public void setAnonymous(boolean anonymous) {
+        this.anonymous = anonymous;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public String getContent() {
