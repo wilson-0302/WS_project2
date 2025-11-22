@@ -6,8 +6,16 @@
 <%
   request.setCharacterEncoding("utf-8");
 
+  String keyword = request.getParameter("keyword");
   BoardDAO dao = new BoardDAO();
-  List<BoardVO> list = dao.getBoardList();
+  List<BoardVO> list = null;
+
+  if(keyword != null && !keyword.trim().equals("")) {
+    list = dao.searchByTitle(keyword);
+  } else {
+    list = dao.getBoardList();
+  }
+
   request.setAttribute("list", list);
 %>
 
@@ -66,8 +74,16 @@
 <body>
 <jsp:include page="top.jsp" />
 <div class="container">
+  <!-- 검색 -->
+  <form method="get" action="list.jsp" class="mb-4">
+    <div class="input-group">
+      <input type="text" class="form-control" name="keyword" placeholder="제목 검색"
+             value="<%= (keyword != null ? keyword : "") %>">
+      <button class="btn btn-custom" type="submit">검색</button>
+    </div>
+  </form>
 
-  <!-- Add 버튼 -->
+  <!-- 추가 버튼 -->
   <div class="d-flex justify-content-end mb-4">
     <a href="write.jsp" class="btn btn-custom">게시글 추가</a>
   </div>

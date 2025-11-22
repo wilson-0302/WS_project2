@@ -77,4 +77,41 @@ public class BoardDAO {
         return 0;
     }
 
+    public List<BoardVO> searchByTitle(String keyword){
+        List<BoardVO> list = new ArrayList<BoardVO>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        String SQL = "SELECT * FROM BOARD WHERE title LIKE ?";
+
+        try {
+            conn = JDBCUtil.getConnection();
+            stmt = conn.prepareStatement(SQL);
+
+            stmt.setString(1, "%" + keyword + "%");
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                BoardVO vo = new BoardVO();
+                vo.setId(rs.getInt("id"));
+                vo.setTitle(rs.getString("title"));
+                vo.setWriter(rs.getString("writer"));
+                vo.setAnonymous(rs.getBoolean("anonymous"));
+                vo.setLike(rs.getInt("like"));
+                vo.setContent(rs.getString("content"));
+                vo.setRegdate(rs.getString("regdate"));
+                vo.setCnt(rs.getInt("cnt"));
+                list.add(vo);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+
 }
