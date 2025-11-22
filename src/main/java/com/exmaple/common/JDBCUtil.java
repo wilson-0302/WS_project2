@@ -14,10 +14,10 @@ public class JDBCUtil {
                         ,"W25_22200320"
                         ,"Dumie3");
             }
-            System.out.println("db 연결 성공");
+            // System.out.println("db 연결 성공");
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("db 연결 실패");
+            // System.out.println("db 연결 실패");
         }
 
         return con;
